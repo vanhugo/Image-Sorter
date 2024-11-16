@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.image_sorter.HelloController">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.image_sorter.Controller">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label fx:id="Choose" text="Rate:">
+      <font>
+         <Font name="Agency FB" size="35.0" />
+      </font></Label>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <ImageView fx:id="imagePicture" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      </children>
+   </HBox>
+   <TextField fx:id="Rating" alignment="CENTER" onKeyTyped="#checkNumber" prefHeight="48.0" prefWidth="102.0" promptText="Enter rating">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </TextField>
+   <HBox alignment="CENTER" layoutX="30.0" layoutY="68.0" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button layoutX="10.0" layoutY="10.0" onAction="#onSubmitButtonClick" text="Submit">
+            <font>
+               <Font name="Britannic Bold" size="19.0" />
+            </font>
+         </Button>
+      </children>
+   </HBox>
+   <Button mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save">
+      <font>
+         <Font name="Britannic Bold" size="19.0" />
+      </font>
+   </Button>
 </VBox>
