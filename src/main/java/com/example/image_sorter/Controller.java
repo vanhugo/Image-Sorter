@@ -49,7 +49,7 @@ public class Controller {
             imagePicture.setImage(temporaryImage);
         } catch (Exception e) {
             System.out.println("Error loading images: " + e.getMessage());
-            imagePicture.setImage(nophotos);
+            imagePicture.setImage(null);
         }
     }
 
