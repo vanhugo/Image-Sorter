@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
+
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegSegmentMetadataReader;
@@ -98,7 +96,7 @@ public class DataModel {
                                 System.out.println("Exception");
                             }
                             Rating newRating = new Rating();
-                            newRating.value = 0;  // Default value
+                            newRating.value = -1;  // Default value is -1
                             newRating.name = fileName;
                             newRating.date = date;
                             Ratings.add(newRating);
@@ -122,5 +120,36 @@ public class DataModel {
             writer.close();
 
         } catch(Exception e) {}
+    }
+    public int countUnrated() {
+        int unrated = 0;
+        for (Rating rating : Ratings) {
+            if (rating.value == -1) {
+                unrated++;
+            }
+        }
+        return unrated;
+    }
+    public String randomUnrated() throws Exception {
+        int unrated = countUnrated();
+        int choice = (int) (Math.random() * unrated);
+        for (Rating rating : Ratings) {
+            if (rating.value == -1) {
+                if (choice == 0) {
+                    return rating.name;
+
+                }
+                choice--;
+            }
+        }
+        throw new Exception("No Image Found");
+    }
+
+    public void rateImage(String imageName, int value) {
+        for (Rating rating : Ratings) {
+            if (rating.name == imageName) {
+                rating.value = value;
+            }
+        }
     }
 }

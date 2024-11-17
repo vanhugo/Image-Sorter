@@ -15,16 +15,17 @@ public class Controller {
 
     private String imageDirectory;
 
-    @FXML
-    private Label Choose;
+    private String currentImage;
 
+    private Image nophotos;
     @FXML
-
     private ImageView imagePicture;
-    private Image currentImage;
 
     @FXML
     private TextField Rating;
+
+    @FXML
+    private Label unrated;
 
     public Controller() {
         this.imageDirectory = "./Data";
@@ -35,21 +36,33 @@ public class Controller {
         Path filePath = Paths.get(imageDirectory, imageName);
         return filePath.toString();
     }
-
     public void initialize() {
+        selectImage();
+    }
+
+    private void selectImage() {
+        setCount();
         // Load the images during initialization
         try {
-            String apple = this.model.Ratings.get(0).name;
-            currentImage = new Image(new FileInputStream(makeImagePath(apple)));
-            imagePicture.setImage(currentImage);
+            currentImage = this.model.randomUnrated();
+            Image temporaryImage = new Image(new FileInputStream(makeImagePath(currentImage)));
+            imagePicture.setImage(temporaryImage);
         } catch (Exception e) {
             System.out.println("Error loading images: " + e.getMessage());
+            imagePicture.setImage(nophotos);
         }
     }
 
 
     @FXML
     protected void onSubmitButtonClick() {
+        this.model.rateImage(currentImage, Integer.valueOf(Rating.getText()));
+        Rating.clear();
+        selectImage();
+    }
+    private void setCount() {
+        int count = this.model.countUnrated();
+        unrated.setText(String.valueOf(count));
     }
 
 

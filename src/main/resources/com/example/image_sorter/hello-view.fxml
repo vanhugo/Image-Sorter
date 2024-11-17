@@ -14,7 +14,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="Choose" text="Rate:">
+    <Label fx:id="Choose" text="Rate(0-9):">
       <font>
          <Font name="Agency FB" size="35.0" />
       </font></Label>
@@ -42,4 +42,18 @@
          <Font name="Britannic Bold" size="19.0" />
       </font>
    </Button>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Label text="Unrated:  ">
+            <font>
+               <Font size="19.0" />
+            </font>
+         </Label>
+         <Label fx:id="unrated">
+            <font>
+               <Font size="19.0" />
+            </font>
+         </Label>
+      </children>
+   </HBox>
 </VBox>
