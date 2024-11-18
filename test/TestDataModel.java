@@ -42,6 +42,9 @@ public class TestDataModel {
 
         Data = new DataModel("test/TestData/Case4");
         assertEquals(4, Data.Ratings.size());
+
+        Data = new DataModel("test/TestData/Case5");
+        assertEquals(5, Data.Ratings.size());
     }
 
     // Test the count of unrated images
