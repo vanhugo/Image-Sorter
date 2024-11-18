@@ -13,6 +13,12 @@ public class TestDataModel {
     public void testNewModelStandard() {
         DataModel Data = new DataModel("test/TestData/Case1");
         assertEquals(2, Data.Ratings.size());
+
+        Data = new DataModel("test/TestData/Case4");
+        assertEquals(4, Data.Ratings.size());
+
+        Data = new DataModel("test/TestData/Case5");
+        assertEquals(5, Data.Ratings.size());
     }
 
     // Test the constructor with an empty directory
@@ -33,6 +39,9 @@ public class TestDataModel {
     public void testNewModelAddImage() {
         DataModel Data = new DataModel("test/TestData/Case3");
         assertEquals(2, Data.Ratings.size());
+
+        Data = new DataModel("test/TestData/Case4");
+        assertEquals(4, Data.Ratings.size());
     }
 
     // Test the count of unrated images
@@ -44,6 +53,15 @@ public class TestDataModel {
         DataModel model = new DataModel("test/TestData/Case4");
         int count = model.countUnrated();
         assertEquals(4, count);
+
+        model = new DataModel("test/TestData/Case1");
+        count = model.countUnrated();
+        assertEquals(2, count);
+
+        model = new DataModel("test/TestData/Case5");
+        count = model.countUnrated();
+        assertEquals(5, count);
+
     }
 
     // Test that rating an image decreases the count of unrated images
