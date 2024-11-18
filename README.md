@@ -1,6 +1,15 @@
 # Image Sorter Application
 
-The **Image Sorter** application is a simple JavaFX program designed to help users sort and rate images. It automatically scans a directory for images, lets users view them, and assign ratings, which are saved in a CSV file for future reference.
+The purpose of this program is to generate time series data 
+from photographs for statistical analysis. The photos to be
+rated are presented to the user in random order to help 
+blind the analysis.
+
+The **Image Sorter** application is a simple 
+JavaFX program designed to help users sort and rate 
+images. It automatically scans a directory for images, 
+lets users view them, and assign ratings, which are saved 
+in a CSV file for future reference.
 
 
 ---
@@ -17,8 +26,8 @@ The **Image Sorter** application is a simple JavaFX program designed to help use
 ## Installation
 
 ### Prerequisites
-- [Java 11 or higher](https://www.oracle.com/java/technologies/javase-downloads.html)
-- [JavaFX SDK](https://openjfx.io/) (properly added to your project's classpath)
+- Java 11 or higher
+- JavaFX SDK
 - IntelliJ
 
 ### Steps
