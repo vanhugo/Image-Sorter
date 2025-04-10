@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.drew.imaging.jpeg.JpegMetadataReader;
@@ -64,9 +65,9 @@ public class DataModel {
                 // Parse line into Rating object if it has exactly three parts
                 if (parts.length == 3) {
                     Rating rating = new Rating();
-                    rating.value = Integer.parseInt(parts[0].trim());
-                    rating.name = parts[1].trim();
-                    rating.date = parts[2].trim();
+                    rating.date = parts[0].trim();
+                    rating.value = Integer.parseInt(parts[1].trim());
+                    rating.name = parts[2].trim();
                     Ratings.add(rating);  // Add to the list
                 }
             }
@@ -108,6 +109,9 @@ public class DataModel {
                         if (!existsInRatings) {
                             String date = "N/A";
 
+                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
                             // Extract metadata for the image
                             try {
                                 Metadata metadata = JpegMetadataReader.readMetadata(file);
@@ -116,7 +120,7 @@ public class DataModel {
 
                                 Date rawDate = directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL);
                                 if (rawDate != null) {
-                                    date = rawDate.toString();
+                                    date = formatter.format(rawDate);
                                 }
                             } catch (Exception e) {
                                 System.out.println("Metadata extraction failed for: " + fileName);
@@ -144,7 +148,7 @@ public class DataModel {
         Path csvName = makeCSVName();
         try (BufferedWriter writer = Files.newBufferedWriter(csvName)) {
             for (Rating rating : Ratings) {
-                writer.write(rating.value + "," + rating.name + "," + rating.date);
+                writer.write(rating.date + "," + rating.value + "," + rating.name);
                 writer.newLine();
             }
         } catch (Exception e) {
